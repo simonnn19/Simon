@@ -1,0 +1,36 @@
+def getUserCredits(message):
+    while True:
+        credits = input(message)
+        if not credits.isnumeric():
+            print("Integers required")
+            continue
+        
+        credits = int(credits)
+        if credits not in [0, 20, 40, 60, 80, 100, 120]:
+            print("Range error")
+            continue
+        return credits
+        
+def printProgression(passCredits, deferCredits, failCredits):
+    if passCredits == 120:
+        print("Progress")
+    elif passCredits == 100:
+        print("Progress - module trailer")
+    elif failCredits in [80, 100, 120]:
+        print("Exclude")
+    else:
+        print("Do not progress - module retriever")
+        
+while True:
+    passCredits = getUserCredits("Input pass credits: ")
+    deferCredits = getUserCredits("Input defer credits: ")
+    failCredits = getUserCredits("Input fail credits: ")
+    if failCredits + deferCredits + passCredits != 120:
+        print("Total incorrect")
+        continue
+    printProgression(passCredits, deferCredits, failCredits)
+    userInput = input("Enter 'X' to exit, or Press any other key to continue").capitalize()
+    if userInput == "X":
+        print("Goodbye")
+
+        exit()    
